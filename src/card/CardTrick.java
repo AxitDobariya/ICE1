@@ -49,7 +49,23 @@ public class CardTrick {
             System.out.println("Card - Value: " + card.getValue() + ", Suit: " + card.getSuit());
         }
         
-        // Step 6: Ask the user for their card
+        // Step 6: Search for the lucky card in the magic hand
+        boolean foundLuckyCard = false;
+        for (Card c : magicHand) {
+            if (c.getValue() == luckyCard.getValue() && c.getSuit().equalsIgnoreCase(luckyCard.getSuit())) {
+                foundLuckyCard = true;
+                break;
+            }
+        }
+        
+        // Step 7: Report the result for the lucky card
+        if (foundLuckyCard) {
+            System.out.println("Congratulations! You found the lucky card!");
+        } else {
+            System.out.println("Sorry! The lucky card is not in the magic hand. You Lose!");
+        }
+        
+        // Step 8: Ask the user for their card
         Scanner scanner = new Scanner(System.in);
         System.out.print("\nEnter the value of your card (1-13): ");
         int userValue = scanner.nextInt();
@@ -61,21 +77,21 @@ public class CardTrick {
         userCard.setValue(userValue);
         userCard.setSuit(userSuit);
         
-        // Step 7: Search for the user's card in the magic hand
-        boolean found = false;
+        // Step 9: Search for the user's card in the magic hand
+        boolean foundUserCard = false;
         
         for (Card c : magicHand) {
             if (c.getValue() == userCard.getValue() && c.getSuit().equalsIgnoreCase(userCard.getSuit())) {
-                found = true;
+                foundUserCard = true;
                 break;
             }
         }
         
-        // Step 8: Report the result
-        if (found) {
+        // Step 10: Report the result for the user's card
+        if (foundUserCard) {
             System.out.println("Congratulations! Your card is in the magic hand.");
         } else {
-            System.out.println("Sorry! Your card is not in the magic hand.");
+            System.out.println("Sorry! Your card is not in the magic hand. You Lose!");
         }
     }
 }
